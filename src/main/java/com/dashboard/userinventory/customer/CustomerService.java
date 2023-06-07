@@ -17,6 +17,7 @@ public class CustomerService {
     public List<Customer> getAllCustomers() {
         return customerDao.selectAllCustomers();
     }
+
     public Customer getCustomer(Long customerId) {
         return customerDao.selectCustomerById(customerId)
                 .orElseThrow(() ->
@@ -24,4 +25,23 @@ public class CustomerService {
                 );
     }
 
+    public void addCustomer(CustomerRegistrationRequest customerRegistrationRequest) {
+        if (customerDao.existsCustomerWithEmail(customerRegistrationRequest.email())) {
+            throw new DuplicateResourceException(
+                    String.format("Customer with email %s already exists", customerRegistrationRequest.email())
+            );
+        }
+
+        Customer customer = new Customer(
+                customerRegistrationRequest.name(),
+                customerRegistrationRequest.email(),
+                customerRegistrationRequest.password(),
+                customerRegistrationRequest.age(),
+                customerRegistrationRequest.gender()
+        );
+
+        customerDao.insertCustomer(customer);
+    }
+
 }
+

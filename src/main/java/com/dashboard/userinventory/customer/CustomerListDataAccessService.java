@@ -2,6 +2,7 @@ package com.dashboard.userinventory.customer;
 
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,9 +10,9 @@ import java.util.Optional;
 public class CustomerListDataAccessService implements CustomerDao {
 
     //fake db
-    private static final List<Customer> CUSTOMER_LIST;
+    private static List<Customer> CUSTOMER_LIST = new ArrayList<>();
     static {
-        CUSTOMER_LIST = List.of(
+        CUSTOMER_LIST.add(
                 new Customer(
                         1L,
                         "janet jones",
@@ -20,7 +21,9 @@ public class CustomerListDataAccessService implements CustomerDao {
                         Gender.FEMALE,
                         "Password",
                         "null"
-                ),
+                )
+        );
+        CUSTOMER_LIST.add(
                 new Customer(
                         2L,
                         "antonio junior",
@@ -29,7 +32,9 @@ public class CustomerListDataAccessService implements CustomerDao {
                         Gender.MALE,
                         "Password",
                         "null"
-                ),
+                )
+        );
+        CUSTOMER_LIST.add(
                 new Customer(
                         3L,
                         "Chris Battles",
@@ -38,7 +43,9 @@ public class CustomerListDataAccessService implements CustomerDao {
                         Gender.MALE,
                         "Password",
                         "null"
-                ),
+                )
+        );
+        CUSTOMER_LIST.add(
                 new Customer(
                         4L,
                         "henry richards",
@@ -47,7 +54,9 @@ public class CustomerListDataAccessService implements CustomerDao {
                         Gender.MALE,
                         "Password",
                         "null"
-                ),
+                )
+        );
+        CUSTOMER_LIST.add(
                 new Customer(
                         5L,
                         "maria metrics",
@@ -67,10 +76,14 @@ public class CustomerListDataAccessService implements CustomerDao {
 
     @Override
     public Optional<Customer> selectCustomerById(Long customerId) {
-        return CUSTOMER_LIST
+        Optional<Customer> customer1 = CUSTOMER_LIST
                 .stream()
                 .filter(customer -> customer.getId().equals(customerId))
                 .findFirst();
+        if (customer1 == null) {
+            throw new ResourceNotFoundException(String.format("Customer with ID %s not found", customerId));
+        }
+        return customer1;
     }
 
     @Override

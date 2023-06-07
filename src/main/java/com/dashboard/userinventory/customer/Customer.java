@@ -71,4 +71,11 @@ public class Customer {
     )
     private String profileImageId;
 
+    public Customer(String name, String email, String password, Integer age, Gender gender) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.age = age;
+        this.gender = gender;
+    }
 }
