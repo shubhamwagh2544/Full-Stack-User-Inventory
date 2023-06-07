@@ -1,6 +1,5 @@
 package com.dashboard.userinventory.customer;
 
-import com.fasterxml.jackson.annotation.JsonTypeId;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,11 +16,12 @@ import lombok.*;
                 @UniqueConstraint(
                         name = "customer_email_unique",
                         columnNames = "email"
-                ),
-                @UniqueConstraint(
-                        name = "profile_image_id_unique",
-                        columnNames = "profileImageId"
                 )
+//                ,
+//                @UniqueConstraint(
+//                        name = "profile_image_id_unique",
+//                        columnNames = "profileImageId"
+//                )
         }
 )
 public class Customer {
@@ -66,10 +66,10 @@ public class Customer {
     private String password;
 
     @Column(
-            nullable = false,
-            unique = true
+            nullable = false
+            //unique = true
     )
-    private String profileImageId;
+    private String profileImageId = "myprofilelink";
 
     public Customer(String name, String email, String password, Integer age, Gender gender) {
         this.name = name;
