@@ -10,7 +10,8 @@ import java.util.Optional;
 public class CustomerListDataAccessService implements CustomerDao {
 
     //fake db
-    private static List<Customer> CUSTOMER_LIST = new ArrayList<>();
+    private static final List<Customer> CUSTOMER_LIST = new ArrayList<>();
+
     static {
         CUSTOMER_LIST.add(
                 new Customer(
@@ -19,8 +20,7 @@ public class CustomerListDataAccessService implements CustomerDao {
                         "janetjones@gmail.com",
                         25,
                         Gender.FEMALE,
-                        "Password",
-                        "null"
+                        "43odxxkdsj34n7b"
                 )
         );
         CUSTOMER_LIST.add(
@@ -30,8 +30,7 @@ public class CustomerListDataAccessService implements CustomerDao {
                         "antoniojunior@gmail.com",
                         20,
                         Gender.MALE,
-                        "Password",
-                        "null"
+                        "fu34384ncs89ds"
                 )
         );
         CUSTOMER_LIST.add(
@@ -41,8 +40,7 @@ public class CustomerListDataAccessService implements CustomerDao {
                         "chrisbattles@gmail.com",
                         22,
                         Gender.MALE,
-                        "Password",
-                        "null"
+                        "4wex3ofdfdfd78us"
                 )
         );
         CUSTOMER_LIST.add(
@@ -52,8 +50,7 @@ public class CustomerListDataAccessService implements CustomerDao {
                         "henryrichards@gmail.com",
                         28,
                         Gender.MALE,
-                        "Password",
-                        "null"
+                        "90nsushje7yfsj"
                 )
         );
         CUSTOMER_LIST.add(
@@ -63,10 +60,13 @@ public class CustomerListDataAccessService implements CustomerDao {
                         "mariametrics@gmail.com",
                         24,
                         Gender.FEMALE,
-                        "Password",
-                        "null"
+                        "2478ewjdbskdoudis"
                 )
         );
+    }
+
+    public static List<Customer> getCustomerList() {
+        return CUSTOMER_LIST;
     }
 
     @Override
@@ -127,8 +127,8 @@ public class CustomerListDataAccessService implements CustomerDao {
                 .findFirst();
     }
 
-    @Override
-    public void updateCustomerProfileImageId(String profileImageId, Long customerId) {
-        //TODO : to do later :)
-    }
+//    @Override
+//    public void updateCustomerProfileImageId(String profileImageId, Long customerId) {
+//        //TODO : to do later :)
+//    }
 }

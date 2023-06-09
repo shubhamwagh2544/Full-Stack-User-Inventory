@@ -1,5 +1,5 @@
 server:
-  port: 3000
+  port: 8080
   error:
     include-message: always
 
@@ -10,12 +10,12 @@ spring:
     password: postgres
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: validate
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
-    show-sql: false
+    show-sql: true
   main:
     web-application-type: servlet
 

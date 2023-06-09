@@ -34,6 +34,7 @@ public class Customer {
     @SequenceGenerator(
             name = "customer_id_seq",
             sequenceName = "customer_id_seq",
+            initialValue = 1,
             allocationSize = 1
     )
     private Long id;
@@ -65,11 +66,11 @@ public class Customer {
     )
     private String password;
 
-    @Column(
-            nullable = false
-            //unique = true
-    )
-    private String profileImageId = "myprofilelink";
+//    @Column(
+//            nullable = false
+//            //unique = true
+//    )
+//    private String profileImageId = "myprofilelink";
 
     public Customer(String name, String email, String password, Integer age, Gender gender) {
         this.name = name;
