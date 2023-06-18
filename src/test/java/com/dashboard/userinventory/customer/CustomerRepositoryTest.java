@@ -50,6 +50,18 @@ class CustomerRepositoryTest extends AbstractTestContainers {
     }
 
     @Test
+    void IfNotExistsCustomerByEmail() {
+        //Given
+        String email = FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID();
+
+        //When
+        boolean actual = underTest.existsCustomerByEmail(email);
+
+        //Then
+        assertThat(actual).isFalse();
+    }
+
+    @Test
     void existsCustomerById() {
         //Given
         int age = FAKER.random().nextInt(15, 100);
@@ -78,6 +90,18 @@ class CustomerRepositoryTest extends AbstractTestContainers {
     }
 
     @Test
+    void IfNotExistsCustomerById() {
+        //Given
+        long id = -1;
+
+        //When
+        boolean actual = underTest.existsCustomerById(id);
+
+        //Then
+        assertThat(actual).isFalse();
+    }
+
+    @Test
     void findCustomerByEmail() {
         //Given
         int age = FAKER.random().nextInt(15, 100);
@@ -99,5 +123,16 @@ class CustomerRepositoryTest extends AbstractTestContainers {
         assertThat(customerByEmail).isNotEmpty();
     }
 
-    //TODO : Write remaining Unit Tests
+    @Test
+    void findCustomerByEmailIfEmailDoesNotExists() {
+        //Given
+        String email = FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID();
+
+        //When
+        Optional<Customer> customerByEmail = underTest.findCustomerByEmail(email);
+
+        //Then
+        assertThat(customerByEmail).isNotPresent();
+    }
+
 }

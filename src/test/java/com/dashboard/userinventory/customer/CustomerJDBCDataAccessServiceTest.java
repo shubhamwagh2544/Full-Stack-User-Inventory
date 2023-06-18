@@ -92,7 +92,31 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestContainers {
 
     @Test
     void insertCustomer() {
+        //Given
+        int age = FAKER.random().nextInt(15, 100);
+        String email = FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID();
+        Customer customer = new Customer(
+                FAKER.name().fullName(),
+                email,
+                FAKER.internet().password(),
+                age,
+                age % 2 == 0 ? Gender.MALE : Gender.FEMALE
+        );
 
+        //When
+        underTest.insertCustomer(customer);
+
+        Long id = underTest.selectAllCustomers()
+                .stream()
+                .filter(customer1 -> customer1.getEmail().equals(email))
+                .map(Customer::getId)
+                .findFirst()
+                .orElseThrow();
+
+        boolean actual = underTest.existsCustomerWithId(id);
+
+        //Then
+        assertThat(actual).isTrue();
     }
 
     @Test
@@ -170,10 +194,6 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestContainers {
     }
 
     @Test
-    void updateCustomer() {
-    }
-
-    @Test
     void deleteCustomerById() {
         //Given
         int age = FAKER.random().nextInt(15, 100);
@@ -197,8 +217,9 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestContainers {
 
         underTest.deleteCustomerById(id);
 
-        //Then
         boolean actual = underTest.existsCustomerWithId(id);
+
+        //Then
         assertThat(actual).isFalse();
 
         //OR
@@ -321,6 +342,127 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestContainers {
         });
     }
 
-    //TODO : Multiple Unit Tests yet to be Written
+    @Test
+    void updateCustomerAge() {
+        //Given
+        int age = FAKER.random().nextInt(15, 100);
+        String email = FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID();
+        Customer customer = new Customer(
+                FAKER.name().fullName(),
+                email,
+                FAKER.internet().password(),
+                age,
+                age % 2 == 0 ? Gender.MALE : Gender.FEMALE
+        );
+        underTest.insertCustomer(customer);
+
+        //When
+        Long id = underTest.selectAllCustomers()
+                .stream()
+                .filter(customer1 -> customer1.getEmail().equals(email))
+                .map(Customer::getId)
+                .findFirst()
+                .orElseThrow();
+
+        Customer update = new Customer();
+        int newAge = 25;                //new age
+        update.setId(id);
+        update.setAge(newAge);
+        underTest.updateCustomer(update);
+
+        Optional<Customer> actual = underTest.selectCustomerById(id);
+
+        //Then
+        assertThat(actual).isPresent().hasValueSatisfying(customer1 -> {
+            assertThat(customer1.getId()).isEqualTo(id);
+            assertThat(customer1.getName()).isEqualTo(customer.getName());
+            assertThat(customer1.getEmail()).isEqualTo(customer.getEmail());
+            assertThat(customer1.getAge()).isEqualTo(newAge);
+            assertThat(customer1.getPassword()).isEqualTo(customer.getPassword());
+            assertThat(customer1.getGender()).isEqualTo(customer.getGender());
+        });
+    }
+
+    @Test
+    void updateCustomerPassword() {
+        //Given
+        int age = FAKER.random().nextInt(15, 100);
+        String email = FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID();
+        Customer customer = new Customer(
+                FAKER.name().fullName(),
+                email,
+                FAKER.internet().password(),
+                age,
+                age % 2 == 0 ? Gender.MALE : Gender.FEMALE
+        );
+        underTest.insertCustomer(customer);
+
+        //When
+        Long id = underTest.selectAllCustomers()
+                .stream()
+                .filter(customer1 -> customer1.getEmail().equals(email))
+                .map(Customer::getId)
+                .findFirst()
+                .orElseThrow();
+
+        Customer update = new Customer();
+        String password = "TestPassword";             //new Pass
+        update.setId(id);
+        update.setPassword(password);
+        underTest.updateCustomer(update);
+
+        Optional<Customer> actual = underTest.selectCustomerById(id);
+
+        //Then
+        assertThat(actual).isPresent().hasValueSatisfying(customer1 -> {
+            assertThat(customer1.getId()).isEqualTo(id);
+            assertThat(customer1.getName()).isEqualTo(customer.getName());
+            assertThat(customer1.getEmail()).isEqualTo(customer.getEmail());
+            assertThat(customer1.getAge()).isEqualTo(customer.getAge());
+            assertThat(customer1.getPassword()).isEqualTo(password);
+            assertThat(customer1.getGender()).isEqualTo(customer.getGender());
+        });
+    }
+
+    @Test
+    void updateCustomerGender() {
+        //Given
+        int age = FAKER.random().nextInt(15, 100);
+        String email = FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID();
+        Customer customer = new Customer(
+                FAKER.name().fullName(),
+                email,
+                FAKER.internet().password(),
+                age,
+                Gender.FEMALE
+        );
+        underTest.insertCustomer(customer);
+
+        //When
+        Long id = underTest.selectAllCustomers()
+                .stream()
+                .filter(customer1 -> customer1.getEmail().equals(email))
+                .map(Customer::getId)
+                .findFirst()
+                .orElseThrow();
+
+        Customer update = new Customer();
+        update.setId(id);
+        Gender male = Gender.MALE;
+        update.setGender(male);
+        underTest.updateCustomer(update);
+
+        Optional<Customer> actual = underTest.selectCustomerById(id);
+
+        //Then
+        assertThat(actual).isPresent().hasValueSatisfying(customer1 -> {
+            assertThat(customer1.getId()).isEqualTo(id);
+            assertThat(customer1.getName()).isEqualTo(customer.getName());
+            assertThat(customer1.getEmail()).isEqualTo(customer.getEmail());
+            assertThat(customer1.getAge()).isEqualTo(customer.getAge());
+            assertThat(customer1.getPassword()).isEqualTo(customer.getPassword());
+            assertThat(customer1.getGender()).isEqualTo(male);
+        });
+    }
 
 }

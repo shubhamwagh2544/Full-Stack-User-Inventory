@@ -2,6 +2,7 @@ package com.dashboard.userinventory;
 
 import com.github.javafaker.Faker;
 import org.flywaydb.core.Flyway;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -52,7 +53,7 @@ public abstract class AbstractTestContainers {
     }
 
     private static DataSource getDataSource() {
-        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create()
+        DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create()
                 .driverClassName(postgreSQLContainer.getDriverClassName())
                 .url(postgreSQLContainer.getJdbcUrl())
                 .username(postgreSQLContainer.getUsername())
@@ -67,4 +68,9 @@ public abstract class AbstractTestContainers {
 
     protected static final Faker FAKER = new Faker();
 
+    @AfterAll
+    static void closeConnections() {
+        postgreSQLContainer.stop();
+        postgreSQLContainer.close();
+    }
 }

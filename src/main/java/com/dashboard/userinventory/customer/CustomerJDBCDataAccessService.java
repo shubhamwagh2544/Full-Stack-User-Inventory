@@ -84,12 +84,10 @@ public class CustomerJDBCDataAccessService implements CustomerDao {
 
     @Override
     public void updateCustomer(Customer update) {
-        Customer customer = selectCustomerById(update.getId()).get();
-        if (customer == null) {
-            throw new ResourceNotFoundException(
-                    String.format("Customer with id %s Not found", update.getId())
-            );
-        }
+        Customer customer =
+                selectCustomerById(update.getId())
+                        .orElseThrow();
+
         if (update.getName() != null && !update.getName().equals(customer.getName())) {
             var sql = "UPDATE customer SET name = ? where id = ?";
             int update1 = jdbcTemplate.update(sql, update.getName(), update.getId());
@@ -107,7 +105,7 @@ public class CustomerJDBCDataAccessService implements CustomerDao {
         }
         if (update.getGender() != null && !update.getGender().equals(customer.getGender())) {
             var sql = "UPDATE customer SET gender = ? where id = ?";
-            int update1 = jdbcTemplate.update(sql, update.getGender(), update.getId());
+            int update1 = jdbcTemplate.update(sql, update.getGender().name(), update.getId());
             System.out.println("Gender Update : " + update1);
         }
         if (update.getPassword() != null && !update.getPassword().equals(customer.getPassword())) {

@@ -28,15 +28,17 @@ public class CustomerService {
     }
 
     public void addCustomer(CustomerRegistrationRequest customerRegistrationRequest) {
-        if (customerDao.existsCustomerWithEmail(customerRegistrationRequest.email())) {
+        //check if email exists
+        String email = customerRegistrationRequest.email();
+        if (customerDao.existsCustomerWithEmail(email)) {
             throw new DuplicateResourceException(
-                    String.format("Customer with email %s already exists", customerRegistrationRequest.email())
+                    String.format("Customer with email %s already exists", email)
             );
         }
 
         Customer customer = new Customer(
                 customerRegistrationRequest.name(),
-                customerRegistrationRequest.email(),
+                email,
                 customerRegistrationRequest.password(),
                 customerRegistrationRequest.age(),
                 customerRegistrationRequest.gender()

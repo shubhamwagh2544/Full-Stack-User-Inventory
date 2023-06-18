@@ -13,6 +13,7 @@ services:
     networks:
       - db
     restart: unless-stopped
+    command: postgres -c 'max-connections=1000'
 
 networks:
   db:

@@ -1,31 +1,21 @@
 package com.dashboard.userinventory.customer;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Optional;
-
-
+@ExtendWith(MockitoExtension.class)
 class CustomerJPADataAccessServiceTest {
 
     private CustomerJPADataAccessService underTest;
-    private AutoCloseable autoCloseable;
-    @Mock
-    private CustomerRepository customerRepository;
+    @Mock private CustomerRepository customerRepository;
 
     @BeforeEach
     void setUp() {
-        autoCloseable = MockitoAnnotations.openMocks(this);
         underTest = new CustomerJPADataAccessService(customerRepository);
-    }
-
-    @AfterEach
-    void tearDown() throws Exception {
-        autoCloseable.close();
     }
 
     @Test
@@ -44,7 +34,7 @@ class CustomerJPADataAccessServiceTest {
         long id = 1;
 
         //When
-        Optional<Customer> customer = underTest.selectCustomerById(id);
+        underTest.selectCustomerById(id);
 
         //Then
         Mockito.verify(customerRepository)
@@ -135,7 +125,7 @@ class CustomerJPADataAccessServiceTest {
         String email = "danielcraig@gmail.com";
 
         //When
-        Optional<Customer> customer = underTest.selectCustomerByEmail(email);
+        underTest.selectCustomerByEmail(email);
 
         //Then
         Mockito.verify(customerRepository)
