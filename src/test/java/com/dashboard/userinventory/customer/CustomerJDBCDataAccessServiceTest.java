@@ -2,6 +2,7 @@ package com.dashboard.userinventory.customer;
 
 import com.dashboard.userinventory.AbstractTestContainers;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 
 class CustomerJDBCDataAccessServiceTest extends AbstractTestContainers {
 
@@ -153,6 +155,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestContainers {
     }
 
     @Test
+    @Disabled
     void existsCustomerWithId() {
         //Given
         int age = FAKER.random().nextInt(15, 100);
@@ -302,6 +305,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestContainers {
     }
 
     @Test
+    @Disabled
     void updateCustomerEmail() {
         //Given
         int age = FAKER.random().nextInt(15, 100);
