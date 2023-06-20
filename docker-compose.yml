@@ -13,9 +13,14 @@ services:
     networks:
       - db
     restart: unless-stopped
+
   userinventory:
     container_name: shubhams-userinventory
     image: shubhamwagh2544/userinventory
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/customer
+      SPRING_DATASOURCE_USERNAME: shubhamwagh
+      SPRING_DATASOURCE_PASSWORD: password
     ports:
       - "8088:8080"
     networks:
@@ -23,10 +28,6 @@ services:
     depends_on:
       - db
     restart: unless-stopped
-    command:
-      - --spring.datasource.url=jdbc:postgresql://db:5432/customer
-      - --spring.datasource.username=shubhamwagh
-      - --spring.datasource.password=password
 
 networks:
   db:
