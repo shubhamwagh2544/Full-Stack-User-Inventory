@@ -61,9 +61,7 @@ jobs:
           region: ${{ secrets.EB_REGION }}
           deployment_package: Dockerrun.aws.json
       - name: Commit and Push Dockerrun.aws.json
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          git commit -m "Update Dockerrun.aws.json docker image with new tag ${{steps.build-number.outputs.BUILD_NUMBER}}"
-          git push
+        uses: Andro999b/push@v1.3
+        with:
+          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
