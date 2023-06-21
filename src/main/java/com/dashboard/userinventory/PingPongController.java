@@ -1,14 +1,14 @@
 package com.dashboard.userinventory;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/ping")
 public class PingPongController {
-    record PingPong(String pingpong) {}
-
-    @GetMapping("/ping-pong")
-    public PingPong pingpong() {
-        return new PingPong("ping-pong");
+    @GetMapping
+    public String ping() {
+        return "ping-pong";
     }
 }
