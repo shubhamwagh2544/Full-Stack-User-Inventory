@@ -1,0 +1,31 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "shubhams-userinventory",
+      "image": "shubhamwagh2544/userinventory:latest",
+      "essential": true,
+      "memory": 512,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 8080
+        }
+      ],
+      "environment" : [
+        {
+          "name" : "SPRING_DATASOURCE_URL",
+          "value" : "jdbc:postgresql://TODO:5432/customer"
+        },
+        {
+          "name" : "SPRING_DATASOURCE_USERNAME",
+          "value" : "shubhamwagh"
+        },
+        {
+          "name" : "SPRING_DATASOURCE_PASSWORD",
+          "value" : "password"
+        }
+      ]
+    }
+  ]
+}
