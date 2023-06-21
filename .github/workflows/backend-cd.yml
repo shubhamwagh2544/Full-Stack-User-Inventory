@@ -67,3 +67,5 @@ jobs:
           git add .
           git commit -m "Update Dockerrun.aws.json docker image with new tag ${{steps.build-number.outputs.BUILD_NUMBER}}"
           git push origin master
+        with:
+          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
