@@ -2,7 +2,7 @@
   "AWSEBDockerrunVersion": 2,
   "containerDefinitions": [
     {
-      "name": "shubhams-userinventory",
+      "name": "userinventory",
       "image": "shubhamwagh2544/userinventory:latest",
       "essential": true,
       "memory": 512,

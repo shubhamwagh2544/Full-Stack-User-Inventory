@@ -15,7 +15,7 @@ services:
     restart: unless-stopped
 
   userinventory:
-    container_name: shubhams-userinventory
+    container_name: userinventory
     image: shubhamwagh2544/userinventory
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/customer

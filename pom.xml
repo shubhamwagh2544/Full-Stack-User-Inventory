@@ -18,7 +18,7 @@
 	<properties>
 		<java.version>17</java.version>
 		<docker.username>shubhamwagh2544</docker.username>
-		<docker.image.name>shubhams-userinventory</docker.image.name>
+		<docker.image.name>userinventory</docker.image.name>
 		<docker.image.tag/>
 	</properties>
 
