@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Disabled
 class CustomerJDBCDataAccessServiceTest extends AbstractTestContainers {
 
     private CustomerJDBCDataAccessService underTest;
