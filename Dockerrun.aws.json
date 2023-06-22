@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "userinventory",
-      "image": "shubhamwagh2544/userinventory:22.06.2023.08.33.11",
+      "image": "shubhamwagh2544/userinventory:22.06.2023.08.42.17",
       "essential": true,
       "memory": 512,
       "portMappings": [
