@@ -4,9 +4,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class TestController {
-    @GetMapping(path = "hello")
-    public String hello() {
-        return "Hello! World";
+public class PingPongController {
+    record PingPong(String pingpong) {}
+    @GetMapping("pingpong")
+    public PingPong pingPong() {
+        return new PingPong("ping-pong");
     }
+
 }
