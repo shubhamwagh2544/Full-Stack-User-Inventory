@@ -10,7 +10,7 @@ import java.util.List;
 public class CustomerService {
     private final CustomerDao customerDao;
     @Autowired
-    public CustomerService(@Qualifier("jdbc") CustomerDao customerDao) {
+    public CustomerService(@Qualifier("jpa") CustomerDao customerDao) {
         this.customerDao = customerDao;
     }
 
