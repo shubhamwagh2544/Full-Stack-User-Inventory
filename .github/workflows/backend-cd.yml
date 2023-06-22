@@ -85,13 +85,11 @@ jobs:
           ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Commit and push Dockerrun.aws.json
         run: |
-          git config user.name "Shubham Wagh"
-          git config user.email "shubhamwagh2544@gmail.com"
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git add Dockerrun.aws.json
           git commit -m "Update Dockerrun.aws.json docker image with new tag ${{ steps.build-number.outputs.BUILD_NUMBER }}"
           git push
-        with:
-          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - name: Send Slack Message
         run: >
           curl -X POST -H 'Content-type: application/json' 
