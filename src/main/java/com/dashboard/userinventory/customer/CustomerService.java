@@ -1,5 +1,8 @@
 package com.dashboard.userinventory.customer;
 
+import com.dashboard.userinventory.exception.DuplicateResourceException;
+import com.dashboard.userinventory.exception.RequestValidationException;
+import com.dashboard.userinventory.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

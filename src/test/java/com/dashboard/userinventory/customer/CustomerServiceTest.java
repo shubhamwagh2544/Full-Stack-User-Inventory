@@ -1,5 +1,8 @@
 package com.dashboard.userinventory.customer;
 
+import com.dashboard.userinventory.exception.DuplicateResourceException;
+import com.dashboard.userinventory.exception.RequestValidationException;
+import com.dashboard.userinventory.exception.ResourceNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

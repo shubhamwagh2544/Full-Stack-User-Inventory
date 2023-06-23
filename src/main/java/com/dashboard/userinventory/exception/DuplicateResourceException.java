@@ -1,4 +1,4 @@
-package com.dashboard.userinventory.customer;
+package com.dashboard.userinventory.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

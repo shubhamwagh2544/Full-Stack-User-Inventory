@@ -1,5 +1,6 @@
 package com.dashboard.userinventory.customer;
 
+import com.dashboard.userinventory.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -80,7 +81,7 @@ public class CustomerListDataAccessService implements CustomerDao {
                 .stream()
                 .filter(customer -> customer.getId().equals(customerId))
                 .findFirst();
-        if (customer1 == null) {
+        if (customer1.isEmpty()) {
             throw new ResourceNotFoundException(String.format("Customer with ID %s not found", customerId));
         }
         return customer1;

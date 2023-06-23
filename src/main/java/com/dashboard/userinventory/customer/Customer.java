@@ -1,5 +1,6 @@
 package com.dashboard.userinventory.customer;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -34,7 +35,6 @@ public class Customer {
     @SequenceGenerator(
             name = "customer_id_seq",
             sequenceName = "customer_id_seq",
-            initialValue = 1,
             allocationSize = 1
     )
     private Long id;
@@ -64,6 +64,7 @@ public class Customer {
     @Column(
             nullable = false
     )
+    @JsonIgnore
     private String password;
 
 //    @Column(
