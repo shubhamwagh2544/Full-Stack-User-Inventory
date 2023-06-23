@@ -64,7 +64,6 @@ public class Customer {
     @Column(
             nullable = false
     )
-    @JsonIgnore
     private String password;
 
 //    @Column(
