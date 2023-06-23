@@ -2,7 +2,6 @@ import {Spinner, Text, Wrap, WrapItem} from "@chakra-ui/react";
 import SidebarWithHeader from "./components/shared/SideBar.jsx";
 import {useEffect, useState} from "react";
 import {getCustomers} from "./services/client.js";
-import Card from "./components/Card.jsx";
 import CardWithImage from "./components/Card.jsx";
 
 const App = () => {
@@ -20,7 +19,7 @@ const App = () => {
             }).finally(() => {
                 setLoading(false)
             })
-        }, 3000)
+        }, 2000)
     }, [])
 
     if (loading) {
@@ -55,6 +54,8 @@ const App = () => {
                             name={customer.name}
                             email={customer.email}
                             age={customer.age}
+                            gender={customer.gender}
+                            imageNumber={index}
                         />
                     </WrapItem>
                 ))}
