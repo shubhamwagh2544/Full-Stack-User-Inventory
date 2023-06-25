@@ -16,6 +16,7 @@ public class UserInventoryApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(UserInventoryApplication.class, args);
+
 	}
 
 	@Bean
