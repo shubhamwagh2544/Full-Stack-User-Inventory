@@ -364,6 +364,7 @@ class CustomerServiceTest {
     }
 
     @Test
+    @Disabled
     void canUpdateCustomerPassword() {      //flow as per updateCustomer
         //given
         long id = 1;

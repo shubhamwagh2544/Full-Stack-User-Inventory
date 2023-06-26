@@ -29,6 +29,19 @@ services:
       - db
     restart: unless-stopped
 
+  userinventory-react:
+    container_name: userinventory-react
+    image: shubhamwagh2544/userinventory-react
+    build:
+      context: react/react-frontend
+      args:
+        api_base_url: http://localhost:8088
+    ports:
+      - "3000:5173"
+    depends_on:
+      - userinventory
+    restart: unless-stopped
+
 networks:
   db:
     driver: bridge

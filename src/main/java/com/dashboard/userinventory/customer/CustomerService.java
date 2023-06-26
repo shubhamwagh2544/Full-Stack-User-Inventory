@@ -68,10 +68,6 @@ public class CustomerService {
             customer.setEmail(customerUpdateRequest.email());
             changes = true;
         }
-        if (customer.getPassword() != null || !customer.getPassword().equals(customerUpdateRequest.password())) {
-            customer.setPassword(customerUpdateRequest.password());
-            changes = true;
-        }
         if (customer.getAge() != null || !customer.getAge().equals(customerUpdateRequest.age())) {
             customer.setAge(customerUpdateRequest.age());
             changes = true;
