@@ -20,7 +20,7 @@ import {deleteCustomer} from "../services/client.js";
 import {errorNotification, successNotification} from "../services/notification.js";
 import UpdateCustomerDrawer from "./UpdateCustomerDrawer.jsx";
 
-export default function CardWithImage({id, name, email, age, gender, imageNumber, fetchCustomers}) {
+export default function CardWithImage({id, name, email, age, gender, password, imageNumber, fetchCustomers}) {
     const imageGender = gender === "male" ? "men" : "women";
     const { isOpen, onOpen, onClose } = useDisclosure()
     const cancelRef = useRef()
@@ -70,7 +70,7 @@ export default function CardWithImage({id, name, email, age, gender, imageNumber
                 <Stack direction={'row'} justify={'center'} spacing={6} p={2}>
                     <Stack>
                         <UpdateCustomerDrawer
-                            initialValues={{name, email, age, gender}}
+                            initialValues={{name, email, age, password, gender}}
                             customerId={id}
                             fetchCustomers={fetchCustomers}
                         />

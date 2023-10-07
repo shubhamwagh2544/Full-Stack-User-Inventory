@@ -102,6 +102,13 @@ const UpdateCustomerForm = ({fetchCustomers, initialValues, customerId}) => {
                                 placeholder="20"
                             />
 
+                            <MyTextInput
+                                label="Password"
+                                name="password"
+                                type="text"
+                                placeholder="password"
+                            />
+
                             <MySelect label="Gender" name="gender">
                                 <option value="">Select gender</option>
                                 <option value="male">Male</option>

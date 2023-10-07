@@ -72,6 +72,10 @@ public class CustomerService {
             customer.setAge(customerUpdateRequest.age());
             changes = true;
         }
+        if (customer.getPassword() != null || !customer.getPassword().equals(customerUpdateRequest.password())) {
+            customer.setPassword(customerUpdateRequest.password());
+            changes = true;
+        }
         if (customer.getGender() != null || !customer.getGender().equals(customerUpdateRequest.gender())) {
             customer.setGender(customerUpdateRequest.gender());
             changes = true;

@@ -88,6 +88,7 @@ const App = () => {
                             email={customer.email}
                             age={customer.age}
                             gender={customer.gender}
+                            password={customer.password}
                             imageNumber={index}
                             fetchCustomers={fetchCustomers}
                         />
